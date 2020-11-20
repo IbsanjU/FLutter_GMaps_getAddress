@@ -33,16 +33,44 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text(widget.title)),
+        // appBar: AppBar(title: Text(widget.title)),
         body: Stack(
-          children: [
-            GoogleMap(
-              onMapCreated: onMapCreated,
-              initialCameraPosition:
-                  CameraPosition(target: LatLng(40.7128, -74.0060), zoom: 10.0),
-            )
-          ],
-        ));
+      alignment: Alignment.center,
+      children: [
+        GoogleMap(
+          onMapCreated: onMapCreated,
+          initialCameraPosition:
+              CameraPosition(target: LatLng(40.7128, -74.0060), zoom: 10.0),
+        ),
+        Positioned(
+          top: 50.0,
+          right: 15.0,
+          left: 15.0,
+          child: Container(
+            height: 50.0,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Colors.white,
+            ),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Enter Address',
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(left: 15.0, top: 15.0),
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    Icons.search,
+                    size: 35.0,
+                  ),
+                  onPressed: () {},
+                ),
+              ),
+            ),
+          ),
+        )
+      ],
+    ));
   }
 
   void onMapCreated(controller) {
