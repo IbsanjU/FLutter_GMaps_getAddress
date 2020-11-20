@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() => runApp(MyApp());
 
@@ -6,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
             primarySwatch: Colors.amber,
@@ -23,17 +26,28 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() => _counter++);
-  }
+  //
+  GoogleMapController _mapController;
+  String searchAddr;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: Center(),
-    );
+        appBar: AppBar(title: Text(widget.title)),
+        body: Stack(
+          children: [
+            GoogleMap(
+              onMapCreated: onMapCreated,
+              initialCameraPosition:
+                  CameraPosition(target: LatLng(40.7128, -74.0060), zoom: 10.0),
+            )
+          ],
+        ));
+  }
+
+  void onMapCreated(controller) {
+    setState(() {
+      _mapController = controller;
+    });
   }
 }
