@@ -241,8 +241,8 @@ class _MyHomePageState extends State<MyHomePage> {
       printAddr(first);
       a = 'Address :  ';
       if (first.addressLine != null) a = a + '${first.addressLine} \n';
-      if (first.addressLine != null) a = a + '${first.locality} ';
-      if (first.addressLine != null) a = a + '${first.postalCode} ';
+      if (first.locality != null) a = a + '${first.locality} ';
+      if (first.postalCode != null) a = a + '${first.postalCode} ';
     }
     if (a.length > 0) {
       setState(() => address = a);
